@@ -22,6 +22,15 @@ tape('should respond b64', (t) => {
     t.end()
   })
 })
+tape('should respond user-agent', (t) => {
+  const options = { headers: { 'User-Agent': 'test' } };
+
+  jsonist.get(`${urlBase}/user-agent`, options, (err, body) => {
+    if (err) t.error(err)
+    t.equal(body.userAgent, 'test')
+    t.end()
+  })
+})
 
 tape('cleanup', function (t) {
   server.close()
